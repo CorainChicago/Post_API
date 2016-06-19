@@ -1,6 +1,7 @@
 class CreateStatistics < ActiveRecord::Migration
   def change
     create_table :statistics do |t|
+      t.integer :post_id
       t.integer :actual_likeCount
       t.integer :actual_shareCount
       t.integer :actual_commentCount

@@ -3,9 +3,9 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.integer :account_id
       t.text :caption
-      t.datetime :data
+      t.datetime :date
       t.text :expandedLinks
-      t.integer :crowd_tangle_id
+      t.integer :crowd_tangle_id, limit: 8
       t.string :link
       t.text :media
       t.text :message

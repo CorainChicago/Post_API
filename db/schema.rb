@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20160619171818) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "media", force: :cascade do |t|
+  create_table "media_items", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
-    t.string   "full",       limit: 255
+    t.text     "full",       limit: 65535
     t.integer  "height",     limit: 4
     t.integer  "width",      limit: 4
     t.text     "type",       limit: 65535
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20160619171818) do
   create_table "posts", force: :cascade do |t|
     t.integer  "account_id",      limit: 4
     t.text     "caption",         limit: 65535
-    t.datetime "data"
+    t.datetime "date"
     t.text     "expandedLinks",   limit: 65535
-    t.integer  "crowd_tangle_id", limit: 4
+    t.integer  "crowd_tangle_id", limit: 8
     t.string   "link",            limit: 255
     t.text     "media",           limit: 65535
     t.text     "message",         limit: 65535
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160619171818) do
   end
 
   create_table "statistics", force: :cascade do |t|
+    t.integer  "post_id",               limit: 4
     t.integer  "actual_likeCount",      limit: 4
     t.integer  "actual_shareCount",     limit: 4
     t.integer  "actual_commentCount",   limit: 4
