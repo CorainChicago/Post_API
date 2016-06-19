@@ -1,3 +1,4 @@
 class Post < ActiveRecord::Base
-  has_many :medium
+  belongs_to :account
+  has_many :media_items
 end
