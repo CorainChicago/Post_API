@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root 'posts#index'
   get 'posts/fill_database' => 'posts#fill_database', as: 'fill_database'
-  resources :media
-  resources :statistics
   resources :posts
   resources :accounts
   # The priority is based upon order of creation: first created -> highest priority.
