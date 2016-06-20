@@ -11,8 +11,11 @@
     React.DOM.tr null,
       React.DOM.td null, @props.post.crowd_tangle_id
       React.DOM.td null, @props.post.platform
+      React.DOM.td null, timeFormat(@props.post.date)
       React.DOM.td null,
         React.DOM.a
-          className: 'delete'
+          className: 'button'
           onClick: @handleDelete
           'Delete'
+
+          
