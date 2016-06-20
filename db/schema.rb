@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619171818) do
+ActiveRecord::Schema.define(version: 20160619171049) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "handle",          limit: 255
@@ -24,17 +24,6 @@ ActiveRecord::Schema.define(version: 20160619171818) do
     t.boolean  "verified"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-  end
-
-  create_table "media_items", force: :cascade do |t|
-    t.integer  "post_id",    limit: 4
-    t.text     "full",       limit: 65535
-    t.integer  "height",     limit: 4
-    t.integer  "width",      limit: 4
-    t.text     "type",       limit: 65535
-    t.string   "url",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -54,18 +43,6 @@ ActiveRecord::Schema.define(version: 20160619171818) do
     t.text     "type",            limit: 65535
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
-  end
-
-  create_table "statistics", force: :cascade do |t|
-    t.integer  "post_id",               limit: 4
-    t.integer  "actual_likeCount",      limit: 4
-    t.integer  "actual_shareCount",     limit: 4
-    t.integer  "actual_commentCount",   limit: 4
-    t.integer  "expected_likeCount",    limit: 4
-    t.integer  "expected_shareCount",   limit: 4
-    t.integer  "expected_commentCount", limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
   end
 
 end
