@@ -5,11 +5,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @post = Post.find(params[:id]).destroy
+    head :no_content
   end
 
   def fill_database
@@ -17,6 +14,5 @@ class PostsController < ApplicationController
     API::CrowdTangleApi.import(result)
     @posts = Post.all
     render :layout => false
-    # return @posts.to_json
   end
 end
