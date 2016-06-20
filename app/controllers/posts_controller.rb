@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by &:date
   end
 
   def destroy
@@ -9,9 +9,9 @@ class PostsController < ApplicationController
     head :no_content
   end
 
-  def fill_database
-    result = API::CrowdTangleApi.get_data("r")
-    API::CrowdTangleApi.import(result)
+  def update_database
+    API::CrowdTangleApi.call
+    @posts = Post.all.sort_by &:date
     head :no_content
   end
 end

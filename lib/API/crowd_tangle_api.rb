@@ -3,16 +3,19 @@ require 'net/http'
 module API
   class CrowdTangleApi
 
-    # def self.call_api
-    #   result = get_data('https://api.crowdtangle.com/posts?token=' + ENV['API_KEY'])
-    #   begin
-    #    import(result)
-    #    result = get_data(result["result"]["pagination"]["nextPage"])
-    #   end while result["result"]["pagination"] != nil 
-    # end
+    def self.call
+      url = 'https://api.crowdtangle.com/posts?token=' + ENV['API_KEY']
+      until url == nil do 
+        result = get_data(url)
+        import(result)
+        url = result["result"]["pagination"]["nextPage"]
+      end  
+    end
+
+    private
     
     def self.get_data(url)
-      uri = URI('https://api.crowdtangle.com/posts?token=' + ENV['API_KEY'])
+      uri = URI(url)
       result = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri
         response = http.request request
@@ -44,7 +47,7 @@ module API
           postUrl: post["postUrl"], 
           date: post["date"], 
           expandedLinks: post["expandedLinks"], 
-          score: post["score"])
+          score: post["score"]) 
       end
     end
   end
