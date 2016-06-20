@@ -12,7 +12,13 @@ To run app locally:
 
 4. `rake db:migrate`
 
-5.  Take your key for the API (sorry, I can't provide mine) and add it to `config/local_env.yml` file.  Check this into gitignore!!!
+5.  Take your key for the API (sorry, I can't provide mine) and add it to `config/local_env.yml` file.  
+
+  it will look like this:
+
+  API_KEY: 'YOUR KEY HERE'
+
+Check this into gitignore!!!
 
 6. Add the following code to you `config/application.rb file (it makes the server pick up the API key):
 
