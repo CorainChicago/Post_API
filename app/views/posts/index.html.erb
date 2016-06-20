@@ -1,30 +1,5 @@
 <h2> CrowdTangle Api Posts </h2>
 <button id="refill">Refill Database</button>
 
-<div id="table"></table>
-<%= render partial: 'table', locals: {posts: @posts} %>
-
-<table>
-  <tr>
-    <th>Account Name</th>
-    <th>ID</th>
-    <th>Date</th>
-    <th>Message</th>
-    <th>Platform</th>
-    <th></th>
-  </tr> 
-  <% @posts.each do |p| %>
-  <tr>
-      <td><%= p.account.name %></td>
-      <td><%= p.crowd_tangle_id %></td>
-      <td><%= p.date.strftime("%D at %I:%M%P")  %></td>
-      <td><%= p.message %></td>
-      <td><%= p.platform %></td>
-      <td><%= button_to "delete", p, :method => :delete  %></td>
-      </tr>  
-    <% end %>
-</table>
-
-<div id="container"></div>
 
 <%= react_component 'Posts', { data: @posts } %>

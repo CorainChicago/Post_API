@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   def fill_database
     result = API::CrowdTangleApi.get_data("r")
     API::CrowdTangleApi.import(result)
-    @posts = Post.all
-    render :layout => false
+    head :no_content
   end
 end
