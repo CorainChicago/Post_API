@@ -26,28 +26,28 @@ module API
     def self.import(result_hash)
       result_hash["result"]["posts"].each do |post|
 
-        account = Account.find_or_create_by(
-          handle: post["account"]["handle"],
-          crowd_tangle_id: post["account"]["id"], 
-          name: post["account"]["name"],
-          platform: post["account"]["platform"],
-          profileImage: post["account"]["profileImage"],
-          subscriberCount: post["account"]["subscriberCount"],
-          url: post["account"]["url"],
-          verified: post["account"]["verified"])
+         account = Account.find_or_create_by(crowd_tangle_id: post["account"]["id"]) do |a| 
+          a.handle = post["account"]["handle"]
+          a.name = post["account"]["name"]
+          a.platform = post["account"]["platform"]
+          a.profileImage = post["account"]["profileImage"]
+          a.subscriberCount = post["account"]["subscriberCount"]
+          a.url = post["account"]["url"]
+          a.verified = post["account"]["verified"]
+        end
 
-        current_post = Post.find_or_create_by(
-          account_id: account.id, 
-          crowd_tangle_id: post["id"], 
-          caption: post["caption"], 
-          link: post["link"], 
-          media: post["media"], 
-          # message: post["message"], 
-          platform: post["platform"], 
-          postUrl: post["postUrl"], 
-          date: post["date"], 
-          expandedLinks: post["expandedLinks"], 
-          score: post["score"]) 
+        current_post = Post.find_or_create_by(crowd_tangle_id: post["id"]) do |p|
+          p.account_id = account.id 
+          p.caption = post["caption"] 
+          p.link = post["link"] 
+          p.media = post["media"] 
+          p.message = post["message"] 
+          p.platform = post["platform"] 
+          p.postUrl = post["postUrl"] 
+          p.date = post["date"] 
+          p.expandedLinks = post["expandedLinks"] 
+          p. score = post["score"]
+        end
       end
     end
   end
