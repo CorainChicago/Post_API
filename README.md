@@ -5,10 +5,15 @@ This app pulls from an api to fill the database, displays the rows in the databa
 To run app locally:
 
 1. clone the repository
+
 2. `bundle`
+
 3. `rake db:create`
+
 4. `rake db:migrate`
+
 5.  Take your key for the API (sorry, I can't provide mine) and add it to `config/local_env.yml` file.  Check this into gitignore!!!
+
 6. Add the following code to you `config/application.rb file (it makes the server pick up the API key):
 
 `config.before_configuration do
@@ -17,5 +22,8 @@ To run app locally:
       ENV[key.to_s] = value
       end if File.exists?(env_file)
     end`
+
+
 7. `rails s` - start your server!
+
 8. Go to localhost:3000 and push the "Update" button    
